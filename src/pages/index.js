@@ -1,6 +1,8 @@
 import Head from "next/head";
 import Layout from "@layouts/Layout";
-
+import data from "/utils/data";
+import ProductItem from "components/ProductItem";
+import styles from "@styles/Home.module.scss";
 export default function Home() {
   return (
     <>
@@ -11,7 +13,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout title="Homepage">
-        <h1>Homepage</h1>
+        <div className={styles.main}>
+          {data.products.map((product) => (
+            <ProductItem product={product} key={product.slug} />
+          ))}
+        </div>
       </Layout>
     </>
   );

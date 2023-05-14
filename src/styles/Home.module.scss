@@ -1,0 +1,6 @@
+@use "@styles/abstracts/mixins";
+
+.main {
+  @include mixins.flex(row, wrap);
+  gap: 60px;
+}

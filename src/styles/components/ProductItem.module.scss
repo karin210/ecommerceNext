@@ -1,0 +1,19 @@
+@use "@styles/abstracts/mixins";
+
+.itemContainer {
+  @include mixins.flex(column, nowrap);
+  align-items: center;
+
+  .img {
+    width: 90%;
+    max-width: 230px;
+  }
+
+  .name,
+  p {
+    text-align: center;
+  }
+
+  button {
+  }
+}
