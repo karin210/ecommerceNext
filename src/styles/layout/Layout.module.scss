@@ -1,0 +1,11 @@
+@use "@styles/abstracts/mixins";
+
+.header {
+  height: 50px;
+  border: 1px solid;
+
+  .nav {
+    @include mixins.flex(row, wrap);
+    justify-content: space-evenly;
+  }
+}
