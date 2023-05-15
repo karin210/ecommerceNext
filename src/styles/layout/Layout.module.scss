@@ -9,3 +9,7 @@
     justify-content: space-evenly;
   }
 }
+
+.cartLink {
+  @include mixins.flex(column, nowrap);
+}

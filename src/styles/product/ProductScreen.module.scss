@@ -1,0 +1,18 @@
+@use "@styles/abstracts/mixins";
+
+.img {
+  width: 40%;
+  max-width: 400px;
+}
+
+.buyBox {
+  width: 200px;
+  margin-top: 30px;
+  background-color: ghostwhite;
+}
+
+.priceSection,
+.statusSection {
+  @include mixins.flex(row, wrap);
+  gap: 20px;
+}
