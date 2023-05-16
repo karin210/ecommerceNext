@@ -1,0 +1,10 @@
+@use "@styles/abstracts/mixins";
+
+.stepsContainer {
+  @include mixins.flex(row, wrap);
+}
+.step {
+  flex: 1;
+  border-bottom: 2px solid;
+  text-align: center;
+}
