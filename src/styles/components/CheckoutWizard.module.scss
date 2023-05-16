@@ -2,9 +2,15 @@
 
 .stepsContainer {
   @include mixins.flex(row, wrap);
-}
-.step {
-  flex: 1;
-  border-bottom: 2px solid;
-  text-align: center;
+
+  .step {
+    flex: 1;
+    border-bottom: 2px solid;
+    text-align: center;
+  }
+
+  .active {
+    color: blue;
+    border-color: blue;
+  }
 }

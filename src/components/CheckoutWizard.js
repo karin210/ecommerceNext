@@ -6,7 +6,10 @@ export default function CheckoutWizard({ activeStep = 0 }) {
     <div className={styles.stepsContainer}>
       {["User Login", "Shipping Address", "Payment Method", "Place Order"].map(
         (step, index) => (
-          <div key={step} className={styles.step}>
+          <div
+            key={step}
+            className={`${styles.step} ${index <= activeStep && styles.active}`}
+          >
             {step}
           </div>
         )
