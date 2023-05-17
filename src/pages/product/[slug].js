@@ -6,6 +6,7 @@ import { Store } from "../../../utils/Store";
 import db from "../../../utils/db";
 import Product from "../../../models/Product.";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function ProductScreen(props) {
   const { product } = props;
@@ -20,12 +21,12 @@ export default function ProductScreen(props) {
     const { data } = await axios.get(`/api/products/${product._id}`);
 
     if (data.countInStock < quantity) {
-      alert("Sorry. Product is out of stock");
-      return;
+      return toast.error("Sorry. Product is out of stock");
     }
 
     dispatch({ type: "CART_ADD_ITEM", payload: { ...product, quantity } });
   };
+
   return (
     <Layout title={product.name}>
       <div>

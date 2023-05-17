@@ -4,8 +4,28 @@ import ProductItem from "components/ProductItem";
 import styles from "@styles/Home.module.scss";
 import db from "../../utils/db";
 import Product from "../../models/Product.";
+import { useContext } from "react";
+import { Store } from "../../utils/Store";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function Home({ products }) {
+  const { state, dispatch } = useContext(Store);
+  const { cart } = state;
+
+  const addToCartHandler = async (product) => {
+    const existItem = cart.cartItems.find((x) => x.slug === product.slug);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+    const { data } = await axios.get(`/api/products/${product._id}`);
+
+    if (data.countInStock < quantity) {
+      return toast.error("Sorry. Product is out of stock");
+    }
+
+    dispatch({ type: "CART_ADD_ITEM", payload: { ...product, quantity } });
+    toast.success("Product added to the cart");
+  };
+
   return (
     <>
       <Head>
@@ -17,7 +37,11 @@ export default function Home({ products }) {
       <Layout title="Homepage">
         <div className={styles.main}>
           {products.map((product) => (
-            <ProductItem product={product} key={product.slug} />
+            <ProductItem
+              product={product}
+              key={product.slug}
+              addToCartHandler={addToCartHandler}
+            />
           ))}
         </div>
       </Layout>

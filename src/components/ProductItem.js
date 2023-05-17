@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import styles from "@styles/components/ProductItem.module.scss";
 
-export default function ProductItem({ product }) {
+export default function ProductItem({ product, addToCartHandler }) {
   return (
     <div className={styles.itemContainer}>
       <Link legacyBehavior href={`/product/${product.slug}`}>
@@ -18,7 +18,9 @@ export default function ProductItem({ product }) {
         </Link>
         <p>{product.brand}</p>
         <p>${product.price}</p>
-        <button type="button">Add to cart</button>
+        <button type="button" onClick={() => addToCartHandler(product)}>
+          Add to cart
+        </button>
       </div>
     </div>
   );
