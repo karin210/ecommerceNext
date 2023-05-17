@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 import React, { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Store } from "../../utils/Store";
-import cart from "./cart";
 
 export default function ShippingScreen() {
   const router = useRouter();
@@ -46,8 +45,10 @@ export default function ShippingScreen() {
         },
       })
     );
+
     router.push("/payment");
   };
+
   return (
     <Layout title="Shipping Address">
       <CheckoutWizard activeStep={1} />
@@ -68,12 +69,22 @@ export default function ShippingScreen() {
           <label htmlFor="address">Address</label>
           <input
             id="address"
-            {...register("addres", {
+            {...register("address", {
               required: "Please enter address",
               minLength: { value: 3, message: "Address is more than 2 chars" },
             })}
           />
           {errors.address && <div>{errors.address.message}</div>}
+        </div>
+        <div>
+          <label htmlFor="city">City</label>
+          <input
+            id="city"
+            {...register("city", {
+              required: "Please enter city",
+            })}
+          />
+          {errors.city && <div>{errors.city.message}</div>}
         </div>
         <div>
           <label htmlFor="postalCode">Postal Code</label>
