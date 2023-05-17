@@ -1,9 +1,11 @@
 import Head from "next/head";
 import Layout from "@layouts/Layout";
-import data from "/utils/data";
 import ProductItem from "components/ProductItem";
 import styles from "@styles/Home.module.scss";
-export default function Home() {
+import db from "../../utils/db";
+import Product from "../../models/Product.";
+
+export default function Home({ products }) {
   return (
     <>
       <Head>
@@ -14,11 +16,21 @@ export default function Home() {
       </Head>
       <Layout title="Homepage">
         <div className={styles.main}>
-          {data.products.map((product) => (
+          {products.map((product) => (
             <ProductItem product={product} key={product.slug} />
           ))}
         </div>
       </Layout>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  await db.connect();
+  const products = await Product.find().lean();
+  return {
+    props: {
+      products: products.map(db.convertDocToObject),
+    },
+  };
 }
