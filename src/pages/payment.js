@@ -12,7 +12,7 @@ export default function PaymentScreen() {
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
   const { shippingAddress, paymentMethod } = cart;
-
+  console.log(shippingAddress);
   const router = useRouter();
 
   const submitHandler = (e) => {
@@ -65,3 +65,5 @@ export default function PaymentScreen() {
     </Layout>
   );
 }
+
+PaymentScreen.auth = true;

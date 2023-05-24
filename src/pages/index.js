@@ -3,7 +3,7 @@ import Layout from "@layouts/Layout";
 import ProductItem from "components/ProductItem";
 import styles from "@styles/Home.module.scss";
 import db from "../../utils/db";
-import Product from "../../models/Product.";
+import Product from "../../models/Product";
 import { useContext } from "react";
 import { Store } from "../../utils/Store";
 import axios from "axios";

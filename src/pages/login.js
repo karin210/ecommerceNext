@@ -25,6 +25,7 @@ export default function LoginScreen() {
     register,
     formState: { errors },
   } = useForm();
+
   const submitHandler = async ({ email, password }) => {
     try {
       const result = await signIn("credentials", {
@@ -82,7 +83,9 @@ export default function LoginScreen() {
           <button className={styles.btn}>Login</button>
         </div>
         <div>Don&apos;t have an account? &nbsp;</div>
-        <Link href="register"></Link>
+        <Link href="register">
+          <strong>Register</strong>
+        </Link>
       </form>
     </Layout>
   );

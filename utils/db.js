@@ -1,4 +1,4 @@
-import mongoose, { connections } from "mongoose";
+import mongoose from "mongoose";
 
 const connection = {};
 async function connect() {
@@ -25,8 +25,10 @@ async function disconnect() {
     if (process.env.NODE_ENV === "production") {
       await mongoose.disconnect();
       connection.isConnected = false;
+      console.log("Disconected");
     } else {
       console.log("Not disconnected");
+      console.log(process.env.NODE_ENV);
     }
   }
 }

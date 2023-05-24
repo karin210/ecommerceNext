@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 import styles from "@styles/product/ProductScreen.module.scss";
 import { Store } from "../../../utils/Store";
 import db from "../../../utils/db";
-import Product from "../../../models/Product.";
+import Product from "../../../models/Product";
 import axios from "axios";
 import { toast } from "react-toastify";
 
