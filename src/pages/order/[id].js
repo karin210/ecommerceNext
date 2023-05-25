@@ -33,12 +33,14 @@ function OrderScreen() {
   const { query } = useRouter();
   const orderId = query.id;
 
-  const [{ loading, error, order, successPay, loadingPay }, dispatch] =
-    useReducer(reducer, {
+  const [{ loading, error, order, successPay }, dispatch] = useReducer(
+    reducer,
+    {
       loading: true,
       order: {},
       error: "",
-    });
+    }
+  );
   useEffect(() => {
     const fetchOrder = async () => {
       try {
@@ -100,7 +102,6 @@ function OrderScreen() {
   function onApprove(data, actions) {
     return actions.order.capture().then(async function (details) {
       try {
-        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         dispatch({ type: "PAY_REQUEST" });
         const { data } = await axios.put(
           `/api/orders/${order._id}/pay`,
@@ -219,7 +220,7 @@ function OrderScreen() {
                         ></PayPalButtons>
                       </div>
                     )}
-                    {loadingPay && <div>Loading...</div>}
+                    {/* {loadingPay && <div>Loading...</div>} */}
                   </li>
                 )}
               </ul>
@@ -234,4 +235,4 @@ function OrderScreen() {
 OrderScreen.auth = true;
 export default OrderScreen;
 
-// Issues: the reducer function is supposed to be outside the functional component but it's placed inside to
+// Issues: skipped the loadingPay for 36:47  Error: 'loadingPay' is assigned a value but never used.  no-unused-vars at deployment
