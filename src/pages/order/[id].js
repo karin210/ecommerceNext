@@ -7,28 +7,28 @@ import { useEffect, useReducer } from "react";
 import { toast } from "react-toastify";
 import { getError } from "../../../utils/error";
 
-function OrderScreen() {
-  function reducer(state, action) {
-    switch (action.type) {
-      case "FETCH_REQUEST":
-        return { ...state, loading: true, error: "" };
-      case "FETCH_SUCCESS":
-        return { ...state, loading: false, order: action.payload, error: "" };
-      case "FETCH_FAIL":
-        return { ...state, loading: false, error: action.payload };
-      case "PAY_REQUEST":
-        return { ...state, loadingPay: true };
-      case "PAY_SUCCESS":
-        return { ...state, loadingPay: false, successPay: true };
-      case "PAY_FAIL":
-        return { ...state, loadingPay: false, errorPay: action.payload };
-      case "PAY_RESET":
-        return { ...state, loadingPay: false, successPay: false, errorPay: "" };
-      default:
-        state;
-    }
+function reducer(state, action) {
+  switch (action.type) {
+    case "FETCH_REQUEST":
+      return { ...state, loading: true, error: "" };
+    case "FETCH_SUCCESS":
+      return { ...state, loading: false, order: action.payload, error: "" };
+    case "FETCH_FAIL":
+      return { ...state, loading: false, error: action.payload };
+    case "PAY_REQUEST":
+      return { ...state, loadingPay: true };
+    case "PAY_SUCCESS":
+      return { ...state, loadingPay: false, successPay: true };
+    case "PAY_FAIL":
+      return { ...state, loadingPay: false, errorPay: action.payload };
+    case "PAY_RESET":
+      return { ...state, loadingPay: false, successPay: false, errorPay: "" };
+    default:
+      state;
   }
+}
 
+function OrderScreen() {
   const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
   const { query } = useRouter();
   const orderId = query.id;
@@ -219,7 +219,7 @@ function OrderScreen() {
                         ></PayPalButtons>
                       </div>
                     )}
-                    {loading && <div>Loading...</div>}
+                    {loadingPay && <div>Loading...</div>}
                   </li>
                 )}
               </ul>
